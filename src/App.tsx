@@ -3257,8 +3257,9 @@ const ChatWindow = ({ darkMode, userContext }: { darkMode: boolean; userContext:
     setIsTyping(true);
 
     try {
-      const history = messages.map(m => ({
-        role: m.role,
+      const firstUserIndex = messages.findIndex(m => m.role === 'user');
+      const history = (firstUserIndex === -1 ? [] : messages.slice(firstUserIndex)).map(m => ({
+        role: m.role as "user" | "model",
         parts: [{ text: m.text }]
       }));
       
