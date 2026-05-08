@@ -802,13 +802,13 @@ const App = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between gap-4">
+                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
                   <StreamToggle active={stream} set={setStream} darkMode={darkMode} />
-                  <div className="flex gap-2">
+                  <div className="flex flex-wrap gap-2">
                     {stream === 'engineering' && (
                       <button 
                         onClick={() => setIsCAPGuideOpen(true)}
-                        className={`flex items-center gap-2 px-4 py-2 rounded-full text-[10px] font-bold uppercase transition-all border ${darkMode ? 'border-white/10 text-indigo-400 hover:bg-white/5' : 'border-slate-200 text-indigo-600 hover:bg-slate-50'}`}
+                        className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-[10px] font-bold uppercase transition-all border ${darkMode ? 'border-white/10 text-indigo-400 hover:bg-white/5' : 'border-slate-200 text-indigo-600 hover:bg-slate-50'}`}
                       >
                         <Info size={14} />
                         Guide
@@ -816,14 +816,14 @@ const App = () => {
                     )}
                     <button 
                       onClick={() => setIsCategoryGuideOpen(true)}
-                      className={`flex items-center gap-2 px-4 py-2 rounded-full text-[10px] font-bold uppercase transition-all border ${darkMode ? 'border-white/10 text-amber-400 hover:bg-white/5' : 'border-slate-200 text-amber-600 hover:bg-slate-50'}`}
+                      className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-[10px] font-bold uppercase transition-all border ${darkMode ? 'border-white/10 text-amber-400 hover:bg-white/5' : 'border-slate-200 text-amber-600 hover:bg-slate-50'}`}
                     >
                       <ListChecks size={14} />
                       Docs
                     </button>
                     <button 
                       onClick={() => setIsRoadmapOpen(true)}
-                      className={`flex items-center gap-2 px-4 py-2 rounded-full text-[10px] font-bold uppercase transition-all border ${darkMode ? 'border-white/10 text-emerald-400 hover:bg-white/5' : 'border-slate-200 text-emerald-600 hover:bg-slate-50'}`}
+                      className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-[10px] font-bold uppercase transition-all border ${darkMode ? 'border-white/10 text-emerald-400 hover:bg-white/5' : 'border-slate-200 text-emerald-600 hover:bg-slate-50'}`}
                     >
                       <Compass size={14} />
                       Roadmap
@@ -1569,7 +1569,7 @@ const CollegeModal = ({ college, onClose, darkMode, isShortlisted, onToggleShort
       >
         {/* Header */}
         <div className="sticky top-0 z-10 p-4 sm:p-8 flex flex-col sm:flex-row justify-between items-start gap-4 bg-inherit border-b border-white/5">
-          <div className="flex-1">
+          <div className="flex-1 pr-0 sm:pr-8">
             <div className="flex items-center gap-3 mb-2">
               <span className="px-3 py-1 bg-indigo-500/10 text-indigo-400 text-[10px] font-bold rounded-lg uppercase tracking-widest">
                 {typeof college.tier === 'number' ? `Tier ${college.tier}` : college.tier}
@@ -1578,47 +1578,47 @@ const CollegeModal = ({ college, onClose, darkMode, isShortlisted, onToggleShort
                 {college.type}
               </span>
             </div>
-            <h2 className="text-2xl sm:text-4xl font-black tracking-tighter leading-tight">{college.name}</h2>
-            <div className="flex items-center gap-2 mt-2 text-slate-500 text-sm">
+            <h2 className="text-xl sm:text-4xl font-black tracking-tighter leading-tight">{college.name}</h2>
+            <div className="flex items-center gap-2 mt-2 text-slate-500 text-xs sm:text-sm">
               <MapPin size={14} />
               <span>{college.regions.join(', ')}</span>
             </div>
           </div>
-          <div className="flex items-center gap-2 self-end sm:self-start">
+          <div className="flex items-center gap-2 flex-wrap sm:flex-nowrap justify-end w-full sm:w-auto">
             <button 
               onClick={(e) => { e.stopPropagation(); onOpenSimulator(college.name); }}
-              className={`p-3 rounded-full transition-all hover:scale-110 ${darkMode ? 'bg-indigo-500/10 text-indigo-400 hover:bg-indigo-500/20' : 'bg-indigo-50 text-indigo-600 hover:bg-indigo-100'}`}
+              className={`p-2.5 sm:p-3 rounded-full transition-all hover:scale-110 ${darkMode ? 'bg-indigo-500/10 text-indigo-400 hover:bg-indigo-500/20' : 'bg-indigo-50 text-indigo-600 hover:bg-indigo-100'}`}
               title="Day-in-the-Life AI Simulator"
             >
-              <Sparkles size={20} />
+              <Sparkles size={18} className="sm:w-5 sm:h-5" />
             </button>
             <button 
               onClick={(e) => { e.stopPropagation(); onToggleComparison(); }}
-              className={`p-3 rounded-full transition-all hover:scale-110 ${isComparing ? 'bg-indigo-500/10 text-indigo-500' : (darkMode ? 'bg-white/5 text-slate-500 hover:bg-white/10' : 'bg-slate-100 text-slate-400 hover:bg-slate-200')}`}
+              className={`p-2.5 sm:p-3 rounded-full transition-all hover:scale-110 ${isComparing ? 'bg-indigo-500/10 text-indigo-500' : (darkMode ? 'bg-white/5 text-slate-500 hover:bg-white/10' : 'bg-slate-100 text-slate-400 hover:bg-slate-200')}`}
               title={isComparing ? "Remove from Comparison" : "Add to Comparison"}
             >
-              <GitCompare size={20} />
+              <GitCompare size={18} className="sm:w-5 sm:h-5" />
             </button>
             <a 
               href={`https://wa.me/919999999999?text=Hello%20OmniPath%20Team,%20I%20am%20interested%20in%20${encodeURIComponent(college.name)}.`}
               target="_blank" 
               rel="noopener noreferrer"
-              className={`p-3 rounded-full transition-all hover:scale-110 ${darkMode ? 'bg-emerald-500/10 text-emerald-500 hover:bg-emerald-500/20' : 'bg-emerald-50 text-emerald-600 hover:bg-emerald-100'}`}
+              className={`p-2.5 sm:p-3 rounded-full transition-all hover:scale-110 ${darkMode ? 'bg-emerald-500/10 text-emerald-500 hover:bg-emerald-500/20' : 'bg-emerald-50 text-emerald-600 hover:bg-emerald-100'}`}
               title="Contact on WhatsApp"
             >
-              <MessageCircle size={20} />
+              <MessageCircle size={18} className="sm:w-5 sm:h-5" />
             </a>
             <button 
               onClick={(e) => { e.stopPropagation(); onToggleShortlist(); }}
-              className={`p-3 rounded-full transition-all hover:scale-110 ${isShortlisted ? 'bg-rose-500/10 text-rose-500' : (darkMode ? 'bg-white/5 text-slate-500 hover:bg-white/10' : 'bg-slate-100 text-slate-400 hover:bg-slate-200')}`}
+              className={`p-2.5 sm:p-3 rounded-full transition-all hover:scale-110 ${isShortlisted ? 'bg-rose-500/10 text-rose-500' : (darkMode ? 'bg-white/5 text-slate-500 hover:bg-white/10' : 'bg-slate-100 text-slate-400 hover:bg-slate-200')}`}
             >
-              <Heart size={20} fill={isShortlisted ? "currentColor" : "none"} />
+              <Heart size={18} className="sm:w-5 sm:h-5" fill={isShortlisted ? "currentColor" : "none"} />
             </button>
             <button 
               onClick={onClose}
-              className={`p-3 rounded-full transition-all hover:scale-110 ${darkMode ? 'bg-white/5 hover:bg-white/10' : 'bg-slate-100 hover:bg-slate-200'}`}
+              className={`p-2.5 sm:p-3 rounded-full transition-all hover:scale-110 ${darkMode ? 'bg-white/5 hover:bg-white/10' : 'bg-slate-100 hover:bg-slate-200'}`}
             >
-              <CloseIcon size={20} />
+              <CloseIcon size={18} className="sm:w-5 sm:h-5" />
             </button>
           </div>
         </div>
@@ -2986,19 +2986,19 @@ const InstituteAdminDashboard = ({ darkMode, userProfile, onClose }: { darkMode:
     <div className="fixed inset-0 z-[250] flex items-center justify-center p-4 sm:p-6">
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose} className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
       <motion.div initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.9, y: 20 }} className={`relative w-full max-w-4xl max-h-[90vh] overflow-hidden rounded-[2.5rem] border border-white/10 shadow-3xl flex flex-col ${darkMode ? 'bg-[#0a0a0a] text-white' : 'bg-white text-slate-900'}`}>
-        <div className="p-8 border-b border-white/5 flex items-center justify-between">
+        <div className="p-4 sm:p-8 border-b border-white/5 flex items-center justify-between">
           <div>
-            <h2 className="text-2xl font-black tracking-tighter">Institute Dashboard</h2>
-            <p className="text-xs text-slate-500 uppercase tracking-widest font-bold mt-1">Manage your students and records</p>
+            <h2 className="text-xl sm:text-2xl font-black tracking-tighter">Institute Dashboard</h2>
+            <p className="text-[10px] text-slate-500 uppercase tracking-widest font-bold mt-1">Manage your students and records</p>
           </div>
-          <button onClick={onClose} className={`p-3 rounded-2xl transition-all ${darkMode ? 'bg-white/5 hover:bg-white/10' : 'bg-slate-100 hover:bg-slate-200'}`}>
+          <button onClick={onClose} className={`p-2 sm:p-3 rounded-2xl transition-all ${darkMode ? 'bg-white/5 hover:bg-white/10' : 'bg-slate-100 hover:bg-slate-200'}`}>
             <CloseIcon size={20} />
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-8 space-y-8">
-          <div className={`p-6 rounded-3xl border ${darkMode ? 'bg-indigo-500/5 border-indigo-500/20' : 'bg-indigo-50 border-indigo-100'}`}>
-            <h3 className="text-sm font-black uppercase tracking-widest text-indigo-500 mb-4">Add New Student</h3>
+        <div className="flex-1 overflow-y-auto p-4 sm:p-8 space-y-8">
+          <div className={`p-4 sm:p-6 rounded-3xl border ${darkMode ? 'bg-indigo-500/5 border-indigo-500/20' : 'bg-indigo-50 border-indigo-100'}`}>
+            <h3 className="text-xs sm:text-sm font-black uppercase tracking-widest text-indigo-500 mb-4">Add New Student</h3>
             <div className="flex flex-col sm:flex-row gap-4">
               <Input label="Student Name" placeholder="e.g. Rahul Kumar" value={newStudentName} onChange={(e) => setNewStudentName(e.target.value)} darkMode={darkMode} />
               <Input label="Student Email" placeholder="e.g. rahul@example.com" value={newStudentEmail} onChange={(e) => setNewStudentEmail(e.target.value)} darkMode={darkMode} />
@@ -3006,7 +3006,7 @@ const InstituteAdminDashboard = ({ darkMode, userProfile, onClose }: { darkMode:
                 <button 
                   onClick={handleAddStudent}
                   disabled={loading || !newStudentName.trim() || !newStudentEmail.trim()}
-                  className="px-8 py-4 bg-indigo-600 text-white rounded-2xl font-bold text-sm hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-500/20 disabled:opacity-50 h-[52px]"
+                  className="w-full sm:w-auto px-8 py-3.5 sm:py-4 bg-indigo-600 text-white rounded-2xl font-bold text-xs sm:text-sm hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-500/20 disabled:opacity-50 h-[48px] sm:h-[52px]"
                 >
                   {loading ? 'Adding...' : 'Add Student'}
                 </button>
@@ -3108,16 +3108,16 @@ const ResultsGrid = ({ data, darkMode, onSelect, shortlisted, onToggleShortlist,
           )}
           <button 
             onClick={(e) => { e.stopPropagation(); onToggleComparison(col); }}
-            className={`p-1.5 sm:p-2 rounded-full transition-all ${comparisonList.some(c => c.name === col.name) ? 'bg-indigo-500/10 text-indigo-500' : (darkMode ? 'bg-white/5 text-slate-500 hover:bg-white/10' : 'bg-slate-100 text-slate-400 hover:bg-slate-200')}`}
+            className={`p-2 sm:p-2.5 rounded-full transition-all ${comparisonList.some(c => c.name === col.name) ? 'bg-indigo-500/10 text-indigo-500' : (darkMode ? 'bg-white/5 text-slate-500 hover:bg-white/10' : 'bg-slate-100 text-slate-400 hover:bg-slate-200')}`}
             title="Compare"
           >
-            <GitCompare size={14} className="sm:w-4 sm:h-4" />
+            <GitCompare size={18} className="sm:w-5 sm:h-5" />
           </button>
           <button 
             onClick={(e) => { e.stopPropagation(); onToggleShortlist(col.name); }}
-            className={`p-1.5 sm:p-2 rounded-full transition-all ${shortlisted.includes(col.name) ? 'bg-rose-500/10 text-rose-500' : (darkMode ? 'bg-white/5 text-slate-500 hover:bg-white/10' : 'bg-slate-100 text-slate-400 hover:bg-slate-200')}`}
+            className={`p-2 sm:p-2.5 rounded-full transition-all ${shortlisted.includes(col.name) ? 'bg-rose-500/10 text-rose-500' : (darkMode ? 'bg-white/5 text-slate-500 hover:bg-white/10' : 'bg-slate-100 text-slate-400 hover:bg-slate-200')}`}
           >
-            <Heart size={14} className="sm:w-4 sm:h-4" fill={shortlisted.includes(col.name) ? "currentColor" : "none"} />
+            <Heart size={18} className="sm:w-5 sm:h-5" fill={shortlisted.includes(col.name) ? "currentColor" : "none"} />
           </button>
         </div>
         <div>
@@ -3276,7 +3276,7 @@ const ChatWindow = ({ darkMode, userContext }: { darkMode: boolean; userContext:
     <motion.div 
       initial={{ y: 50, opacity: 0, scale: 0.95 }} animate={{ y: 0, opacity: 1, scale: 1 }}
       exit={{ y: 50, opacity: 0, scale: 0.95 }}
-      className={`absolute bottom-20 right-0 w-80 sm:w-96 h-[550px] rounded-[2rem] border border-white/10 shadow-3xl flex flex-col overflow-hidden ${darkMode ? 'bg-[#111]' : 'bg-white'}`}
+      className={`absolute bottom-20 right-0 w-[calc(100vw-3rem)] sm:w-96 h-[500px] sm:h-[550px] rounded-[2rem] border border-white/10 shadow-3xl flex flex-col overflow-hidden ${darkMode ? 'bg-[#111]' : 'bg-white'}`}
     >
       <div className="p-5 border-b border-white/5 flex items-center justify-between bg-indigo-600 text-white">
         <div className="flex flex-col">

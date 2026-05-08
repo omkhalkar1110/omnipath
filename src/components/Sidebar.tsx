@@ -171,15 +171,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
       <motion.aside 
         initial={false}
         animate={{ 
-          width: !isSidebarVisible ? 0 : (isSidebarOpen ? 280 : 80),
+          width: !isSidebarVisible ? 0 : (isSidebarOpen || window.innerWidth < 1024 ? 280 : 80),
           x: !isSidebarVisible ? -280 : 0,
           opacity: !isSidebarVisible ? 0 : 1
         }}
         className={`fixed left-0 top-0 h-screen z-[120] border-r transition-colors duration-500 flex flex-col overflow-hidden ${darkMode ? 'bg-[#0a0a0a] border-white/5' : 'bg-white border-slate-200 shadow-xl lg:shadow-none'}`}
       >
-        <div className="p-6 flex items-center justify-between min-w-[260px]">
+        <div className="p-6 flex items-center justify-between min-w-[280px]">
           <AnimatePresence mode="wait">
-            {isSidebarOpen && (
+            {(isSidebarOpen || window.innerWidth < 1024) && (
               <motion.div 
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -196,97 +196,97 @@ export const Sidebar: React.FC<SidebarProps> = ({
           <div className="flex items-center gap-1">
             <button 
               onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-              className={`p-2 rounded-xl transition-all ${darkMode ? 'hover:bg-white/5 text-slate-400' : 'hover:bg-slate-100 text-slate-500'}`}
+              className={`p-3 rounded-xl transition-all lg:flex hidden ${darkMode ? 'hover:bg-white/5 text-slate-400' : 'hover:bg-slate-100 text-slate-500'}`}
               title={isSidebarOpen ? "Collapse Sidebar" : "Expand Sidebar"}
             >
               {isSidebarOpen ? <ChevronLeft size={20} /> : <Menu size={20} />}
             </button>
             <button 
               onClick={() => setIsSidebarVisible(false)}
-              className={`p-2 rounded-xl transition-all text-rose-500 hover:bg-rose-500/10`}
-              title="Hide Sidebar"
+              className={`p-3 rounded-xl transition-all text-rose-500 hover:bg-rose-500/10 lg:hidden`}
+              title="Close Menu"
             >
-              <CloseIcon size={18} />
+              <CloseIcon size={24} />
             </button>
           </div>
         </div>
 
         <nav className="flex-1 px-4 py-6 space-y-1 overflow-y-auto scrollbar-hide">
-          <SidebarHeader label="Main" isOpen={isSidebarOpen} darkMode={darkMode} />
+          <SidebarHeader label="Main" isOpen={isSidebarOpen || window.innerWidth < 1024} darkMode={darkMode} />
           <SidebarItem 
-            icon={<Home size={20} />} 
+            icon={<Home size={22} />} 
             label="Dashboard" 
             active={activeTab === 'dashboard' && !showShortlistedOnly} 
-            onClick={() => { setActiveTab('dashboard'); setShowShortlistedOnly(false); }} 
-            isOpen={isSidebarOpen} 
+            onClick={() => { setActiveTab('dashboard'); setShowShortlistedOnly(false); setIsSidebarVisible(false); }} 
+            isOpen={isSidebarOpen || window.innerWidth < 1024} 
             darkMode={darkMode} 
           />
           <SidebarItem 
-            icon={<Heart size={20} />} 
+            icon={<Heart size={22} />} 
             label="My Shortlist" 
             active={showShortlistedOnly} 
-            onClick={() => { setShowShortlistedOnly(true); setActiveTab('shortlist'); }} 
-            isOpen={isSidebarOpen} 
+            onClick={() => { setShowShortlistedOnly(true); setActiveTab('shortlist'); setIsSidebarVisible(false); }} 
+            isOpen={isSidebarOpen || window.innerWidth < 1024} 
             darkMode={darkMode} 
             badge={shortlisted.length > 0 ? shortlisted.length.toString() : undefined}
           />
 
-          <SidebarHeader label="Tools" isOpen={isSidebarOpen} darkMode={darkMode} />
+          <SidebarHeader label="Tools" isOpen={isSidebarOpen || window.innerWidth < 1024} darkMode={darkMode} />
           <SidebarItem 
-            icon={<ListChecks size={20} />} 
+            icon={<ListChecks size={22} />} 
             label="CAP Preference" 
             active={activeTab === 'preference'} 
-            onClick={() => { setIsPreferenceModalOpen(true); setActiveTab('preference'); }} 
-            isOpen={isSidebarOpen} 
+            onClick={() => { setIsPreferenceModalOpen(true); setActiveTab('preference'); setIsSidebarVisible(false); }} 
+            isOpen={isSidebarOpen || window.innerWidth < 1024} 
             darkMode={darkMode} 
           />
           <SidebarItem 
-            icon={<GitCompare size={20} />} 
+            icon={<GitCompare size={22} />} 
             label="Compare Tool" 
             active={activeTab === 'compare'} 
-            onClick={() => { setIsComparisonModalOpen(true); setActiveTab('compare'); }} 
-            isOpen={isSidebarOpen} 
+            onClick={() => { setIsComparisonModalOpen(true); setActiveTab('compare'); setIsSidebarVisible(false); }} 
+            isOpen={isSidebarOpen || window.innerWidth < 1024} 
             darkMode={darkMode} 
             badge={comparisonList.length > 0 ? comparisonList.length.toString() : undefined}
           />
           <SidebarItem 
-            icon={<Trophy size={20} />} 
+            icon={<Trophy size={22} />} 
             label="Predict My Rank" 
             active={activeTab === 'rank'} 
-            onClick={() => { setIsRankPredictorOpen(true); }} 
-            isOpen={isSidebarOpen} 
+            onClick={() => { setIsRankPredictorOpen(true); setIsSidebarVisible(false); }} 
+            isOpen={isSidebarOpen || window.innerWidth < 1024} 
             darkMode={darkMode} 
           />
           <SidebarItem 
-            icon={<Zap size={20} />} 
+            icon={<Zap size={22} />} 
             label="Life Simulator" 
-            onClick={() => setIsLifeSimOpen(true)} 
-            isOpen={isSidebarOpen} 
+            onClick={() => { setIsLifeSimOpen(true); setIsSidebarVisible(false); }} 
+            isOpen={isSidebarOpen || window.innerWidth < 1024} 
             darkMode={darkMode} 
             badge="New"
           />
 
-          <SidebarHeader label="Guidance" isOpen={isSidebarOpen} darkMode={darkMode} />
+          <SidebarHeader label="Guidance" isOpen={isSidebarOpen || window.innerWidth < 1024} darkMode={darkMode} />
           <SidebarItem 
-            icon={<MessageSquare size={20} />} 
+            icon={<MessageSquare size={22} />} 
             label="AI Counselor" 
             active={isChatOpen} 
-            onClick={() => setIsChatOpen(true)} 
-            isOpen={isSidebarOpen} 
+            onClick={() => { setIsChatOpen(true); setIsSidebarVisible(false); }} 
+            isOpen={isSidebarOpen || window.innerWidth < 1024} 
             darkMode={darkMode} 
           />
           <SidebarItem 
-            icon={<BookOpen size={20} />} 
+            icon={<BookOpen size={22} />} 
             label="CAP Guide" 
-            onClick={() => setIsCAPGuideOpen(true)} 
-            isOpen={isSidebarOpen} 
+            onClick={() => { setIsCAPGuideOpen(true); setIsSidebarVisible(false); }} 
+            isOpen={isSidebarOpen || window.innerWidth < 1024} 
             darkMode={darkMode} 
           />
           <SidebarItem 
-            icon={<Compass size={20} />} 
+            icon={<Compass size={22} />} 
             label="Career Roadmap" 
-            onClick={() => setIsRoadmapOpen(true)} 
-            isOpen={isSidebarOpen} 
+            onClick={() => { setIsRoadmapOpen(true); setIsSidebarVisible(false); }} 
+            isOpen={isSidebarOpen || window.innerWidth < 1024} 
             darkMode={darkMode} 
           />
           <SidebarItem 
@@ -303,57 +303,58 @@ export const Sidebar: React.FC<SidebarProps> = ({
             darkMode={darkMode} 
           />
 
-          {(user?.role === 'creator' || user?.role === 'admin' || firebaseUser) && (
-            <SidebarHeader label="Management" isOpen={isSidebarOpen} darkMode={darkMode} />
-          )}
+          <SidebarHeader label="Management" isOpen={isSidebarOpen || window.innerWidth < 1024} darkMode={darkMode} />
           
-          {user?.role === 'creator' && (
+          {(user?.role === 'creator' || firebaseUser?.role === 'institute_admin') && (
             <SidebarItem 
-              icon={<Video size={20} />} 
+              icon={<Video size={22} />} 
               label="Creator Portal" 
               active={activeTab === 'creator'}
-              onClick={() => setActiveTab('creator')} 
-              isOpen={isSidebarOpen} 
+              onClick={() => { setActiveTab('creator'); setIsSidebarVisible(false); }} 
+              isOpen={isSidebarOpen || window.innerWidth < 1024} 
               darkMode={darkMode} 
             />
           )}
+
           {user?.role === 'admin' && (
             <SidebarItem 
-              icon={<ShieldCheck size={20} />} 
+              icon={<ShieldCheck size={22} />} 
               label="Admin Panel" 
               active={activeTab === 'admin'}
-              onClick={() => setActiveTab('admin')} 
-              isOpen={isSidebarOpen} 
+              onClick={() => { setActiveTab('admin'); setIsSidebarVisible(false); }} 
+              isOpen={isSidebarOpen || window.innerWidth < 1024} 
               darkMode={darkMode} 
             />
           )}
 
           {firebaseUser?.role === 'super_admin' && (
             <SidebarItem 
-              icon={<ShieldCheck size={20} />} 
+              icon={<ShieldCheck size={22} />} 
               label="Super Admin" 
               active={activeTab === 'super_admin'}
-              onClick={() => setActiveTab('super_admin')} 
-              isOpen={isSidebarOpen} 
+              onClick={() => { setActiveTab('super_admin'); setIsSidebarVisible(false); }} 
+              isOpen={isSidebarOpen || window.innerWidth < 1024} 
               darkMode={darkMode} 
             />
           )}
+
           {firebaseUser?.role === 'institute_admin' && (
             <SidebarItem 
-              icon={<Building2 size={20} />} 
+              icon={<Building2 size={22} />} 
               label="My Institute" 
               active={activeTab === 'my_institute'}
-              onClick={() => setActiveTab('my_institute')} 
-              isOpen={isSidebarOpen} 
+              onClick={() => { setActiveTab('my_institute'); setIsSidebarVisible(false); }} 
+              isOpen={isSidebarOpen || window.innerWidth < 1024} 
               darkMode={darkMode} 
             />
           )}
+
           {firebaseUser?.role === 'student' && !firebaseUser.instituteId && (
             <SidebarItem 
-              icon={<Plus size={20} />} 
+              icon={<Plus size={22} />} 
               label="Request Institute" 
-              onClick={() => setIsRequestModalOpen(true)} 
-              isOpen={isSidebarOpen} 
+              onClick={() => { setIsRequestModalOpen(true); setIsSidebarVisible(false); }} 
+              isOpen={isSidebarOpen || window.innerWidth < 1024} 
               darkMode={darkMode} 
             />
           )}
@@ -361,9 +362,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
         <div className="p-4 space-y-2">
           <SidebarItem 
-            icon={<Settings size={20} />} 
+            icon={<Settings size={22} />} 
             label="Settings" 
-            isOpen={isSidebarOpen} 
+            isOpen={isSidebarOpen || window.innerWidth < 1024} 
             darkMode={darkMode} 
           />
           {user ? (
@@ -378,7 +379,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   </div>
                 )}
               </div>
-              {isSidebarOpen && (
+              {(isSidebarOpen || window.innerWidth < 1024) && (
                 <div className="flex-1 overflow-hidden">
                   <div className="flex items-center gap-1.5">
                     <p className="text-xs font-bold truncate">{user.name}</p>
@@ -386,16 +387,16 @@ export const Sidebar: React.FC<SidebarProps> = ({
                       <span className="px-1.5 py-0.5 bg-indigo-600 text-white text-[8px] font-black rounded-md uppercase tracking-tighter">Pro</span>
                     )}
                   </div>
-                  <button onClick={handleFirebaseLogout} className="text-[10px] text-rose-500 font-bold hover:underline">Logout</button>
+                  <button onClick={() => { handleFirebaseLogout(); setIsSidebarVisible(false); }} className="text-[10px] text-rose-500 font-bold hover:underline">Logout</button>
                 </div>
               )}
             </div>
           ) : (
             <SidebarItem 
-              icon={<UserIcon size={20} />} 
+              icon={<UserIcon size={22} />} 
               label="Login / Sign Up" 
-              onClick={() => setIsAuthModalOpen({ open: true, mode: 'register' })} 
-              isOpen={isSidebarOpen} 
+              onClick={() => { setIsAuthModalOpen({ open: true, mode: 'register' }); setIsSidebarVisible(false); }} 
+              isOpen={isSidebarOpen || window.innerWidth < 1024} 
               darkMode={darkMode} 
             />
           )}
