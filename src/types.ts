@@ -1,4 +1,16 @@
+export interface VibeVideo {
+  id: string;
+  collegeName: string;
+  title: string;
+  videoUrl: string;
+  thumbnailUrl?: string;
+  createdAt: string;
+  sourceFootage?: string[]; // URLs to raw footage
+  isExternal?: boolean;
+}
+
 export interface College {
+  id?: string;
   name: string;
   tier: number | string;
   type: string;
@@ -23,6 +35,22 @@ export interface College {
     intlPackage?: string;
     recruiters: string[];
   };
+  fees?: {
+    [category: string]: number;
+  };
+  hostelFees?: number;
+  vibeVideos?: VibeVideo[];
+  faculty?: {
+    name: string;
+    designation: string;
+    specialization: string;
+    image?: string;
+  }[];
+  researchAreas?: string[];
+  notableAlumni?: {
+    name: string;
+    achievement: string;
+  }[];
 }
 
 export interface ChatMessage {
@@ -31,9 +59,15 @@ export interface ChatMessage {
 }
 
 export interface User {
+  id: string;
+  uid: string;
   name: string;
   email: string;
   phone: string;
+  isPremium: boolean;
+  role: 'admin' | 'student' | 'creator';
+  isBlocked: boolean;
+  collegeName?: string; // For creators
 }
 
 export interface Review {
@@ -43,4 +77,17 @@ export interface Review {
   rating: number;
   comment: string;
   date: string;
+}
+
+export interface CareerOption {
+  name: string;
+  path: string;
+  intelligence: string;
+  jobRoles: string[];
+  salaryRange: string;
+}
+
+export interface CareerRoadmap {
+  title: string;
+  options: CareerOption[];
 }

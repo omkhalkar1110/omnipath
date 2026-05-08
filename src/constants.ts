@@ -1,4 +1,4 @@
-import { College } from "./types";
+import { College, CareerRoadmap } from "./types";
 
 export const REGION_CLUSTERS: Record<string, string[]> = {
   "mumbai": ["mumbai", "navi mumbai", "thane", "kalyan", "dombivli", "ulhasnagar", "vasai", "virar", "mira bhayandar"],
@@ -63,40 +63,130 @@ export const COMMERCE_BRANCHES = [
   "B.Voc (Retail Management)"
 ];
 
-export const CAREER_ROADMAPS: Record<string, { title: string, options: { name: string, path: string, intelligence: string }[] }> = {
+export const CAREER_ROADMAPS: Record<string, CareerRoadmap> = {
   engineering: {
     title: "Engineering & Tech Roadmap",
     options: [
-      { name: "Core Engineering", path: "B.E / B.Tech (Mech, Civil, Elec)", intelligence: "Best for students who love physical systems and infrastructure." },
-      { name: "Software & AI", path: "B.E / B.Tech (CS, IT, AI/ML)", intelligence: "Ideal for logical thinkers and those interested in the digital future." },
-      { name: "Design & Architecture", path: "B.Arch", intelligence: "For creative minds with a sense of space and structure." },
-      { name: "Pure Sciences", path: "B.Sc / M.Sc (Research)", intelligence: "For those with deep curiosity about how the universe works." }
+      { 
+        name: "Core Engineering", 
+        path: "B.E / B.Tech (Mech, Civil, Elec)", 
+        intelligence: "Best for students who love physical systems and infrastructure.",
+        jobRoles: ["Design Engineer", "Project Manager", "Site Engineer", "Quality Control"],
+        salaryRange: "4.5 - 12 LPA"
+      },
+      { 
+        name: "Software & AI", 
+        path: "B.E / B.Tech (CS, IT, AI/ML)", 
+        intelligence: "Ideal for logical thinkers and those interested in the digital future.",
+        jobRoles: ["Software Developer", "Data Scientist", "AI Engineer", "Cloud Architect"],
+        salaryRange: "6 - 35 LPA"
+      },
+      { 
+        name: "Design & Architecture", 
+        path: "B.Arch", 
+        intelligence: "For creative minds with a sense of space and structure.",
+        jobRoles: ["Architect", "Urban Planner", "Interior Designer", "Landscape Architect"],
+        salaryRange: "4 - 15 LPA"
+      },
+      { 
+        name: "Pure Sciences", 
+        path: "B.Sc / M.Sc (Research)", 
+        intelligence: "For those with deep curiosity about how the universe works.",
+        jobRoles: ["Research Scientist", "Data Analyst", "Academician", "Lab Technician"],
+        salaryRange: "3.5 - 10 LPA"
+      }
     ]
   },
   medical: {
     title: "Medical & Healthcare Roadmap",
     options: [
-      { name: "Clinical Medicine", path: "MBBS", intelligence: "The gold standard for those dedicated to patient care and surgery." },
-      { name: "Dental Surgery", path: "BDS", intelligence: "For students interested in specialized clinical practice." },
-      { name: "Alternative Medicine", path: "BAMS / BHMS", intelligence: "For those interested in holistic and traditional healing." },
-      { name: "Allied Health", path: "Physiotherapy / Nursing", intelligence: "Critical support roles with high demand and patient interaction." }
+      { 
+        name: "Clinical Medicine", 
+        path: "MBBS", 
+        intelligence: "The gold standard for those dedicated to patient care and surgery.",
+        jobRoles: ["General Physician", "Surgeon", "Medical Officer", "Specialist"],
+        salaryRange: "8 - 25 LPA"
+      },
+      { 
+        name: "Dental Surgery", 
+        path: "BDS", 
+        intelligence: "For students interested in specialized clinical practice.",
+        jobRoles: ["Dentist", "Oral Surgeon", "Orthodontist", "Public Health Dentist"],
+        salaryRange: "3 - 12 LPA"
+      },
+      { 
+        name: "Alternative Medicine", 
+        path: "BAMS / BHMS", 
+        intelligence: "For those interested in holistic and traditional healing.",
+        jobRoles: ["Ayurvedic Doctor", "Homeopathic Consultant", "Wellness Coach", "Researcher"],
+        salaryRange: "3 - 8 LPA"
+      },
+      { 
+        name: "Allied Health", 
+        path: "Physiotherapy / Nursing", 
+        intelligence: "Critical support roles with high demand and patient interaction.",
+        jobRoles: ["Physiotherapist", "Registered Nurse", "Clinical Coordinator", "Rehab Specialist"],
+        salaryRange: "2.5 - 7 LPA"
+      }
     ]
   },
   commerce: {
     title: "Commerce & Finance Roadmap",
     options: [
-      { name: "Professional Accounting", path: "CA / CS / CMA", intelligence: "For highly disciplined students who excel in law and auditing. No specific entrance for college, but professional exams are key." },
-      { name: "Management (Entrance)", path: "BMS / BBA (MAH-CET / NPAT / SET)", intelligence: "Ideal for leadership-oriented students. Take MAH-BMS-CET for Maharashtra colleges or NPAT for NMIMS." },
-      { name: "Elite Management", path: "IPM (IPMAT)", intelligence: "For the top 1% who want to enter IIMs directly after 12th. Requires high quantitative and verbal aptitude." },
-      { name: "Central Universities", path: "B.Com Hons (CUET)", intelligence: "Target SRCC or Hindu College. Requires strong domain knowledge in Accountancy and Economics." }
+      { 
+        name: "Professional Accounting", 
+        path: "CA / CS / CMA", 
+        intelligence: "For highly disciplined students who excel in law and auditing.",
+        jobRoles: ["Chartered Accountant", "Company Secretary", "Cost Accountant", "Auditor"],
+        salaryRange: "7 - 25 LPA"
+      },
+      { 
+        name: "Management (Entrance)", 
+        path: "BMS / BBA", 
+        intelligence: "Ideal for leadership-oriented students.",
+        jobRoles: ["Marketing Manager", "HR Executive", "Operations Manager", "Financial Analyst"],
+        salaryRange: "4 - 15 LPA"
+      },
+      { 
+        name: "Elite Management", 
+        path: "IPM (IPMAT)", 
+        intelligence: "For the top 1% who want to enter IIMs directly after 12th.",
+        jobRoles: ["Management Consultant", "Investment Banker", "Product Manager", "Strategy Lead"],
+        salaryRange: "12 - 40 LPA"
+      },
+      { 
+        name: "Central Universities", 
+        path: "B.Com Hons (CUET)", 
+        intelligence: "Target SRCC or Hindu College.",
+        jobRoles: ["Accountant", "Tax Consultant", "Banker", "Stock Broker"],
+        salaryRange: "5 - 18 LPA"
+      }
     ]
   },
   polytechnic: {
     title: "Diploma & Skill-Based Roadmap",
     options: [
-      { name: "Technical Diploma", path: "Diploma in Engg", intelligence: "Quick entry into the workforce with hands-on technical skills." },
-      { name: "Lateral Entry", path: "Direct 2nd Year B.E", intelligence: "A great path to a degree for those who prefer practical learning first." },
-      { name: "Vocational Training", path: "ITI / B.Voc", intelligence: "Focused on specific industry trades and immediate employability." }
+      { 
+        name: "Technical Diploma", 
+        path: "Diploma in Engg", 
+        intelligence: "Quick entry into the workforce with hands-on technical skills.",
+        jobRoles: ["Junior Engineer", "Technician", "Maintenance Supervisor", "Draftsman"],
+        salaryRange: "2 - 5 LPA"
+      },
+      { 
+        name: "Lateral Entry", 
+        path: "Direct 2nd Year B.E", 
+        intelligence: "A great path to a degree for those who prefer practical learning first.",
+        jobRoles: ["Graduate Engineer Trainee", "Design Assistant", "Technical Lead"],
+        salaryRange: "4 - 10 LPA"
+      },
+      { 
+        name: "Vocational Training", 
+        path: "ITI / B.Voc", 
+        intelligence: "Focused on specific industry trades and immediate employability.",
+        jobRoles: ["Skilled Technician", "Workshop Manager", "Quality Inspector"],
+        salaryRange: "1.5 - 4 LPA"
+      }
     ]
   }
 };
@@ -198,6 +288,13 @@ export const NATIONAL_COLLEGE_DB: College[] = [
     jeeCutoff: 99.9,
     jeeAdvancedCutoff: 99.9,
     branches: ["Computer Science", "Electrical", "Mechanical", "Aerospace", "Chemical"],
+    branchCutoffs: {
+      "Computer Science": 99.9,
+      "Electrical": 99.5,
+      "Mechanical": 99.2,
+      "Aerospace": 99.0,
+      "Chemical": 98.8
+    },
     regions: ["Mumbai"],
     website: "https://www.iitb.ac.in",
     description: "The premier engineering institute of India, known for its world-class research and placements.",
@@ -217,6 +314,12 @@ export const NATIONAL_COLLEGE_DB: College[] = [
     jeeCutoff: 99.8,
     jeeAdvancedCutoff: 99.8,
     branches: ["Computer Science", "Mathematics & Computing", "Electrical", "Mechanical"],
+    branchCutoffs: {
+      "Computer Science": 99.8,
+      "Mathematics & Computing": 99.6,
+      "Electrical": 99.3,
+      "Mechanical": 99.0
+    },
     regions: ["Delhi"],
     website: "https://home.iitd.ac.in",
     description: "One of the oldest and most prestigious IITs, located in the capital city.",
@@ -235,6 +338,12 @@ export const NATIONAL_COLLEGE_DB: College[] = [
     cutoff: 99.2, 
     jeeCutoff: 99.2,
     branches: ["Computer Science", "ECE", "EEE", "Mechanical"],
+    branchCutoffs: {
+      "Computer Science": 99.5,
+      "ECE": 99.0,
+      "EEE": 98.8,
+      "Mechanical": 98.5
+    },
     regions: ["Tamil Nadu"],
     website: "https://www.nitt.edu",
     description: "Consistently ranked as the top NIT in India.",
@@ -253,6 +362,12 @@ export const NATIONAL_COLLEGE_DB: College[] = [
     cutoff: 99.0, 
     jeeCutoff: 99.0,
     branches: ["Computer Science", "IT", "Electronics", "Mechanical"],
+    branchCutoffs: {
+      "Computer Science": 99.3,
+      "IT": 99.0,
+      "Electronics": 98.7,
+      "Mechanical": 98.4
+    },
     regions: ["Karnataka"],
     website: "https://www.nitk.ac.in",
     description: "Top NIT known for its beautiful campus and excellent placements.",
@@ -271,6 +386,10 @@ export const NATIONAL_COLLEGE_DB: College[] = [
     cutoff: 99.5, 
     jeeCutoff: 99.5,
     branches: ["Computer Science", "Electronics & Communication"],
+    branchCutoffs: {
+      "Computer Science": 99.7,
+      "Electronics & Communication": 99.3
+    },
     regions: ["Telangana"],
     website: "https://www.iiit.ac.in",
     description: "A premier research university for computer science and electronics.",
@@ -288,6 +407,12 @@ export const NATIONAL_COLLEGE_DB: College[] = [
     level: "National",
     cutoff: 320, 
     branches: ["Computer Science", "Electronics", "Mechanical", "Chemical"],
+    branchCutoffs: {
+      "Computer Science": 350,
+      "Electronics": 320,
+      "Mechanical": 300,
+      "Chemical": 280
+    },
     regions: ["Rajasthan", "Goa", "Hyderabad"],
     website: "https://www.bits-pilani.ac.in",
     description: "The best private engineering university in India with zero reservation policy.",
@@ -306,6 +431,12 @@ export const NATIONAL_COLLEGE_DB: College[] = [
     cutoff: 99.7, 
     jeeAdvancedCutoff: 99.7,
     branches: ["Computer Science", "Electrical", "Mechanical", "Civil"],
+    branchCutoffs: {
+      "Computer Science": 99.8,
+      "Electrical": 99.4,
+      "Mechanical": 99.1,
+      "Civil": 98.8
+    },
     regions: ["Chennai"],
     website: "https://www.iitm.ac.in",
     description: "Ranked #1 by NIRF for several years, known for its deep tech ecosystem.",
@@ -324,6 +455,11 @@ export const NATIONAL_COLLEGE_DB: College[] = [
     cutoff: 98.8, 
     jeeCutoff: 98.8,
     branches: ["Computer Science", "Electronics", "Mechanical"],
+    branchCutoffs: {
+      "Computer Science": 99.2,
+      "Electronics": 98.8,
+      "Mechanical": 98.4
+    },
     regions: ["Telangana"],
     website: "https://www.nitw.ac.in",
     description: "The first NIT ever established in India, highly respected for Engineering.",
@@ -397,7 +533,26 @@ export const COLLEGE_DB: College[] = [
       highestPackage: "52.0 LPA",
       intlPackage: "1.2 CR",
       recruiters: ["Google", "Microsoft", "Amazon", "Tata Motors", "L&T"]
-    }
+    },
+    fees: {
+      "Open": 155000,
+      "OBC": 77500,
+      "SC": 5000,
+      "ST": 5000,
+      "EWS": 77500,
+      "TFWS": 15000
+    },
+    hostelFees: 45000,
+    faculty: [
+      { name: "Dr. P. M. Padole", designation: "Director", specialization: "Mechanical Engineering" },
+      { name: "Dr. S. B. Thombre", designation: "Professor", specialization: "Thermal Engineering" },
+      { name: "Dr. A. S. Gandhi", designation: "Professor", specialization: "Electronics & Communication" }
+    ],
+    researchAreas: ["Renewable Energy Systems", "Cyber-Physical Systems", "Materials Engineering", "VLSI Design"],
+    notableAlumni: [
+      { name: "Satyendra Pakhale", achievement: "International Industrial Designer" },
+      { name: "Hemant Kanakia", achievement: "Founder, Kanakia Software" }
+    ]
   },
   { 
     name: "COEP Technological University, Pune", 
@@ -426,7 +581,26 @@ export const COLLEGE_DB: College[] = [
       highestPackage: "44.0 LPA",
       intlPackage: "N/A",
       recruiters: ["Goldman Sachs", "Deutsche Bank", "TCS", "Infosys", "Bajaj Auto"]
-    }
+    },
+    fees: {
+      "Open": 125000,
+      "OBC": 62500,
+      "SC": 4500,
+      "ST": 4500,
+      "EWS": 62500,
+      "TFWS": 12000
+    },
+    hostelFees: 38000,
+    faculty: [
+      { name: "Dr. Sunil Bhirud", designation: "Vice Chancellor", specialization: "Computer Engineering" },
+      { name: "Dr. M. S. Sutaone", designation: "Professor", specialization: "Electronics" },
+      { name: "Dr. J. B. Agrawal", designation: "Professor", specialization: "Mechanical" }
+    ],
+    researchAreas: ["Automation and Robotics", "Precision Manufacturing", "Smart Grids", "Sustainable Architecture"],
+    notableAlumni: [
+      { name: "Bharat Ratna Sir M. Visvesvaraya", achievement: "Father of Indian Engineering" },
+      { name: "Sandip Sen", achievement: "Global CEO, AEGIS" }
+    ]
   },
   { 
     name: "VJTI Mumbai", 
@@ -455,7 +629,26 @@ export const COLLEGE_DB: College[] = [
       highestPackage: "62.0 LPA",
       intlPackage: "1.1 CR",
       recruiters: ["Morgan Stanley", "J.P. Morgan", "Rakuten", "Samsung", "Reliance"]
-    }
+    },
+    fees: {
+      "Open": 115000,
+      "OBC": 57500,
+      "SC": 4000,
+      "ST": 4000,
+      "EWS": 57500,
+      "TFWS": 11000
+    },
+    hostelFees: 32000,
+    faculty: [
+      { name: "Dr. Sachin Lodha", designation: "Director", specialization: "Information Security" },
+      { name: "Dr. Faruk Kazi", designation: "Professor", specialization: "Control Systems" },
+      { name: "Dr. R. N. Awale", designation: "Professor", specialization: "Electronics" }
+    ],
+    researchAreas: ["Artificial Intelligence", "Internet of Things (IoT)", "Structural Engineering", "Electric Vehicles"],
+    notableAlumni: [
+      { name: "Sekhar Basu", achievement: "Former Chairman, Atomic Energy Commission" },
+      { name: "Jayant Patil", achievement: "Member of Parliament" }
+    ]
   },
   { 
     name: "ICT Mumbai", 
@@ -482,7 +675,16 @@ export const COLLEGE_DB: College[] = [
       highestPackage: "35.0 LPA",
       intlPackage: "N/A",
       recruiters: ["Reliance Industries", "BASF", "Hindustan Unilever", "Pfizer", "Asian Paints"]
-    }
+    },
+    fees: {
+      "Open": 105000,
+      "OBC": 52500,
+      "SC": 3500,
+      "ST": 3500,
+      "EWS": 52500,
+      "TFWS": 10000
+    },
+    hostelFees: 30000
   },
   { 
     name: "SGGSIE&T Nanded", 
@@ -504,7 +706,16 @@ export const COLLEGE_DB: College[] = [
     website: "https://sggs.ac.in",
     facilities: ["400-acre Campus", "TEQIP Funded Labs", "Digital Library", "Sports Complex", "Auditorium"],
     rankings: ["Top Autonomous Institute in Marathwada", "A+ Grade by NAAC"],
-    description: "Shri Guru Gobind Singhji Institute of Engineering and Technology (SGGSIE&T) is an autonomous institute known for its excellent infrastructure and academic excellence in Marathwada."
+    description: "Shri Guru Gobind Singhji Institute of Engineering and Technology (SGGSIE&T) is an autonomous institute known for its excellent infrastructure and academic excellence in Marathwada.",
+    fees: {
+      "Open": 85000,
+      "OBC": 42500,
+      "SC": 2500,
+      "ST": 2500,
+      "EWS": 42500,
+      "TFWS": 8000
+    },
+    hostelFees: 25000
   },
   { 
     name: "MGM College of Engineering, Nanded", 
@@ -562,7 +773,16 @@ export const COLLEGE_DB: College[] = [
     cutoff: 96.0, 
     minPercentile: 96.0, 
     regions: ["Sangli", "Western Maharashtra"], 
-    website: "http://www.walchandsangli.ac.in" 
+    website: "http://www.walchandsangli.ac.in",
+    fees: {
+      "Open": 92000,
+      "OBC": 46000,
+      "SC": 3000,
+      "ST": 3000,
+      "EWS": 46000,
+      "TFWS": 9000
+    },
+    hostelFees: 28000
   },
   { 
     name: "Government Medical College, Nanded", 

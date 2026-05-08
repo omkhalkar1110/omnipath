@@ -1,5 +1,5 @@
 {
-  "name": "OmniPath Concierge",
-  "description": "The ultimate data-driven college predictor and career architect for Indian students. Explore IITs, NITs, and top Maharashtra colleges with AI-powered admission counseling.",
+  "name": "OmniPath: Maharashtra College Predictor",
+  "description": "A data-driven architect for Maharashtra students navigating Engineering, Medical, and Polytechnic diplomas. Predict admissions, explore career roadmaps, and simulate campus life.",
   "requestFramePermissions": []
 }

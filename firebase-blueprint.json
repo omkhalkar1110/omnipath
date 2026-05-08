@@ -1,0 +1,58 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User profile information and role.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "name": { "type": "string" },
+        "role": { "type": "string", "enum": ["super_admin", "institute_admin", "student"] },
+        "instituteId": { "type": "string", "description": "ID of the institute the user belongs to (if any)." }
+      },
+      "required": ["uid", "email", "name", "role"]
+    },
+    "Institute": {
+      "title": "Institute",
+      "description": "Educational institute or consultancy.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "adminUid": { "type": "string", "description": "UID of the user who requested/manages this institute." },
+        "status": { "type": "string", "enum": ["pending", "approved", "rejected"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "name", "adminUid", "status", "createdAt"]
+    },
+    "Student": {
+      "title": "Student",
+      "description": "Student added by an institute.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "instituteId": { "type": "string" },
+        "addedBy": { "type": "string", "description": "UID of the institute admin who added this student." },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "name", "email", "instituteId", "addedBy", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{uid}": {
+      "schema": "User",
+      "description": "User profiles."
+    },
+    "/institutes/{id}": {
+      "schema": "Institute",
+      "description": "Institute requests and approved institutes."
+    },
+    "/institutes/{id}/students/{studentId}": {
+      "schema": "Student",
+      "description": "Students belonging to an institute."
+    }
+  }
+}
